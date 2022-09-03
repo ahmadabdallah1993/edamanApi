@@ -1,12 +1,13 @@
 'use strict';
 
 const axios = require('axios');
+require('dotenv').config();
 
 
 
 function recepiHan(req,res){
     let nr = req.query.name;
-    const URL = `https://api.edamam.com/search?q=${nr}&app_id=14d9e7ee&app_key=14a8f462cc2c651cd7b8e8d3439f8714`;
+    const URL = `https://api.edamam.com/search?q=${nr}&app_id=${process.env.FOOD_APP_ID}&app_key=${process.env.FOOD_APP_KEY}`;
 
 
 

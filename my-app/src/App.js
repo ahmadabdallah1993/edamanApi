@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import {Card , Row, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -20,10 +20,15 @@ class App extends React.Component{
   handleSubmit = (event) =>{
     event.preventDefault();
     const name = event.target.food.value;
+    const serv = `http://localhost:3005`;
+    // const URL = `http://localhost:3005/searchRecipe?name=${name}`;
 
-    const URL = `http://localhost:3005/searchRecipe?name=${name}`;
+    const obj = {
+      name: name,
+    }
 
-    axios.get(URL).then(result =>{
+    axios.get(`${serv}/searchRecipe`, { params: obj })
+    .then(result =>{
       // console.log(result.data)
       this.setState({
         arr: result.data
@@ -55,9 +60,10 @@ class App extends React.Component{
     </Form>
 
 
-
+    <Row xs={1} md={3} className="g-4">
       {this.state.arr.map( item =>{
         return(
+          <Col>
           <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={item.image} />
       <Card.Body>
@@ -73,8 +79,14 @@ class App extends React.Component{
         {/* <Button variant="primary">Go somewhere</Button> */}
       </Card.Body>
     </Card>
+          
+          </Col>
+
+         
+          
         )
-      })}
+        
+      })} </Row>
     
  
       </div>
