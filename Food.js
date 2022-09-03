@@ -6,7 +6,17 @@ require('dotenv').config();
 
 
 function recepiHan(req,res){
+
     let nr = req.query.name;
+
+let myMemory = {};
+
+if(myMemory[nr] !== undefined)
+{
+    res.send(myMemory[nr]);
+}
+else
+{
     const URL = `https://api.edamam.com/search?q=${nr}&app_id=${process.env.FOOD_APP_ID}&app_key=${process.env.FOOD_APP_KEY}`;
 
 
@@ -17,11 +27,11 @@ axios.get(URL).then(result =>{
 
     let arr = result.data.hits.map( item =>{
         return new Rec(item);
-        
     }) 
 
     // console.log(arr)
     // res.state(200).send(arr);
+    myMemory[nr] = arr;
     res.send(arr);
 
 
@@ -29,6 +39,14 @@ axios.get(URL).then(result =>{
     // res.state(404).send(error)
     console.log(error)
 })
+}
+
+
+
+
+
+
+    
 }
 
 class Rec{
