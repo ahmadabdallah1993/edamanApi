@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
+import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -39,10 +40,19 @@ class App extends React.Component{
   render(){
     return(
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" name="food" placeHolder="pleace enter food name... " />
-          <button type="submit" >Search</button>
-        </form>
+
+
+<Form onSubmit={this.handleSubmit}>
+      <Form.Group className="mb-3" controlId="formFoodName">
+        <Form.Label>Food Name</Form.Label>
+        <Form.Control type="text" name="food" placeHolder="pleace enter food name... " />
+      </Form.Group>
+
+    
+      <Button variant="primary" type="submit">
+        Search
+      </Button>
+    </Form>
 
 
 
