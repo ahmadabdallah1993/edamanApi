@@ -17,7 +17,11 @@ const PORT=process.env.PORT || 3005;
 server.get('/searchRecipe', Recipe);
 
 
+server.get('*', defaultHandeler);
 
+function defaultHandeler(req,res){
+    res.status(404).send("sorry page not found");
+}
 
 
 server.listen(PORT,()=>{

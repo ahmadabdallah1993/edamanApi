@@ -13,7 +13,7 @@ let myMemory = {};
 
 if(myMemory[nr] !== undefined)
 {
-    res.send(myMemory[nr]);
+    res.status(200).send(myMemory[nr]);
 }
 else
 {
@@ -32,12 +32,12 @@ axios.get(URL).then(result =>{
     // console.log(arr)
     // res.state(200).send(arr);
     myMemory[nr] = arr;
-    res.send(arr);
+    res.status(200).send(arr);
 
 
 }).catch(error =>{
-    // res.state(404).send(error)
-    console.log(error)
+    res.status(404).send(error, "soory page not found");
+    // console.log(error)
 })
 }
 
